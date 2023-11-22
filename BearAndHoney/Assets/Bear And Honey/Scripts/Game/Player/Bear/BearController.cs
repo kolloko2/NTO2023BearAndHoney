@@ -13,14 +13,14 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
         [SerializeField] private float _playerSpeed = 5;
         [SerializeField] private float _jumpForce = 5;
         [SerializeField] private float _timeFromGroundToAir = 0.2f;
-        [SerializeField] private float _timeFromAirToFround = 0.2f;
+        [SerializeField] private float _timeFromAirToGround = 0.2f;
         [SerializeField] private bool _isOnGround;
         [SerializeField] private bool _isDashing;
         [SerializeField] private float _dashSpeed = 10;
         [SerializeField] private GameObject _groundCheckerPoint;
         [SerializeField] private float _groundCheckRadius = 0.4f;
         private Rigidbody2D _playerRigidbody2D;
-
+        [SerializeField] private float currentTimeAirToGround;
 
         private void Start()
         {
@@ -38,15 +38,22 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
                 else
 
                 {
-                    StartCoroutine("AirToGround");
+                    StartCoroutine("AirToGroundTimer");
                 }
             }
+
+            if (currentTimeAirToGround == 1)
+            {
+                JumpWithCheck();
+            }
+
             IsOnGround();
         }
 
         private void FixedUpdate()
         {
-            _playerRigidbody2D.velocity = new Vector2(Input.GetAxis("Horizontal")*_playerSpeed, _playerRigidbody2D.velocity.y);
+            _playerRigidbody2D.velocity =
+                new Vector2(Input.GetAxis("Horizontal") * _playerSpeed, _playerRigidbody2D.velocity.y);
         }
 
 
@@ -59,11 +66,14 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
             if (_isOnGround)
             {
                 Jump();
+                currentTimeAirToGround = 0;
             }
         }
 
         private void Jump()
         {
+            _isOnGround = false;
+
             _playerRigidbody2D.AddForce(new Vector2(0, _jumpForce), ForceMode2D.Impulse);
         }
 
@@ -80,7 +90,7 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
                 StartCoroutine("GroundToAirTimer");
             }
         }
-      
+
         private void CanDash()
         {
         }
@@ -94,20 +104,16 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
         {
             yield return new WaitForSeconds(_timeFromGroundToAir);
             _isOnGround = false;
-
         }
 
-        private void AirToGroundTimer()
+        IEnumerator AirToGroundTimer()
         {
-            float currentTimeAirToGround = _timeFromAirToFround;
+            currentTimeAirToGround = 1;
+            yield return new WaitForSeconds(_timeFromAirToGround);
 
-            while (currentTimeAirToGround > 0)
-            {
-                JumpWithCheck();
-                currentTimeAirToGround -= Time.deltaTime;
-            }
-
+            currentTimeAirToGround = 0;
         }
+
 
         private void OnDrawGizmos()
         {
