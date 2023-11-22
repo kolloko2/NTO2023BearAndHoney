@@ -2,8 +2,8 @@ namespace Bear_And_Honey.Scripts.Game.Services
 {
     public class ServicesLocator
     {
-        public SceneSwapService SceneSwapServiceInst;
-        
+        public SceneLoaderService SceneLoaderServiceInst;
+        public ComputerInputService ComputerInputServiceInst;
       
 
 
@@ -11,8 +11,7 @@ namespace Bear_And_Honey.Scripts.Game.Services
         {
             
             
-            SceneSwapServiceInst = new SceneSwapService(); // создаем сервер для смены сцен
-            
+            SceneLoaderServiceInst = new SceneLoaderService(); // создаем сервер для смены сцен
         }
     }
 }

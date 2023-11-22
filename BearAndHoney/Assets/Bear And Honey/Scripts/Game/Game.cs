@@ -1,4 +1,5 @@
 using Bear_And_Honey.Scripts.Game.Services;
+using Bear_And_Honey.Scripts.Game.UI;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ namespace Bear_And_Honey.Scripts.Game
     {
 
         public static Game GameInst; // Создаем едиснтвенный экземпляр класса тк.статика
+        public LoadingScreen LoadingCurtains;
         public ServicesLocator ServiceLocatorInst; 
 
         private void Start() // при спавне
@@ -19,7 +21,7 @@ namespace Bear_And_Honey.Scripts.Game
                 ServiceLocatorInst = new ServicesLocator(); // Создаем сервис локатор
 
 
-                ServiceLocatorInst.SceneSwapServiceInst.Load("SampleScene");
+                ServiceLocatorInst.SceneLoaderServiceInst.Load(Constants.MAINMENUSCENE);
 
             }
             else 
@@ -28,7 +30,7 @@ namespace Bear_And_Honey.Scripts.Game
                 
             }
             DontDestroyOnLoad(gameObject); // записываем геймобджект к которому прилеплен монобех в пулл объектов которые не удаляются при изменении сцены
-            
+            DontDestroyOnLoad(LoadingCurtains); // тоже самое с loadingcurtains
             
             
             
