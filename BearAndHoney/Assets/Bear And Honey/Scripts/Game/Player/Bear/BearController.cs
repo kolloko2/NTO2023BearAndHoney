@@ -19,6 +19,7 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
         [SerializeField] private float _dashSpeed = 10;
         [SerializeField] private GameObject _groundCheckerPoint;
         [SerializeField] private float _groundCheckRadius = 0.4f;
+        [SerializeField] private bool _isJumping;
         private Rigidbody2D _playerRigidbody2D;
         [SerializeField] private float currentTimeAirToGround;
 
@@ -29,6 +30,32 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
 
         private void Update()
         {
+         JumpUpdate();  // Проверка на прыжок
+
+            JumpWithCheckUpdate(); // Проверка на прыжок до платформы
+            IsOnGround(); // проверка нахождениян а земле
+        }
+
+
+
+
+        private void JumpWithCheckUpdate()
+        {
+            
+            
+            if (currentTimeAirToGround == 1)
+            {
+                JumpWithCheck();
+            }
+
+            
+        }
+        
+        
+        private void JumpUpdate()
+        {
+            
+            
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (_isOnGround)
@@ -41,14 +68,15 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
                     StartCoroutine("AirToGroundTimer");
                 }
             }
-
-            if (currentTimeAirToGround == 1)
-            {
-                JumpWithCheck();
-            }
-
-            IsOnGround();
+            
+            
+            
+            
+            
         }
+        
+        
+
 
         private void FixedUpdate()
         {
@@ -64,7 +92,8 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
         private void JumpWithCheck()
         {
             if (_isOnGround)
-            {
+            {            _isOnGround = false;
+
                 Jump();
                 currentTimeAirToGround = 0;
             }
@@ -72,15 +101,23 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
 
         private void Jump()
         {
+            
             _isOnGround = false;
-
+            StartCoroutine("JumpCooldown");
             _playerRigidbody2D.AddForce(new Vector2(0, _jumpForce), ForceMode2D.Impulse);
         }
 
+        IEnumerator JumpCooldown()
+        {
+            _isJumping = true;
+            yield return new WaitForSeconds(0.1f);
+            _isJumping = false;
+        }
+        
         private void IsOnGround()
         {
             if (Physics2D.OverlapCircle(_groundCheckerPoint.transform.position, _groundCheckRadius, _groundLayerMask) &
-                !_isDashing)
+                !_isDashing & !_isJumping)
             {
                 _isOnGround = true;
                 StopCoroutine("GroundToAirTimer");

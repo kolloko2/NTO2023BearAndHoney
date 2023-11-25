@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Interactible
+  - FunctionList
+  - StatementList
+  - MainLevelCanvas
   layers:
   - Default
   - TransparentFX

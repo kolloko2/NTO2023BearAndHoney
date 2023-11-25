@@ -8,7 +8,11 @@ namespace Bear_And_Honey.Scripts.Game
        public static string MAINMENUSCENE = "MainMenuScene"; 
        public static string VIDEOINTROSCENE = "VideoIntroScene";
        public static string FIRTQUESTLEVELSCENE = "FirstQuestLevelScene";
-  
+       public static string VISUALSCRIPTINGWINDOWRESOURCEPATH = "Prefabs/VisualScriptingWindow";
+       public static string STATEMENTRESOURCEPATH = "Prefabs/Statement";
+       public static string FUNCTIONRESOURCEPATH = "Prefabs/Function";
+       public static string MAINLEVELCANVASTAG = "MainLevelCanvas";
+
 
     }
 }
