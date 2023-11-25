@@ -14,6 +14,7 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
         protected List<List<FunctionListEnum>> _currentStatementFunctionList = new List<List<FunctionListEnum>>();
 
 
+
         [SerializeField] FunctionListEnum[] _whatCanBeFunctionList;
         protected VisualScriptingInterpretatorService _visualScriptingInterpretator;
         protected bool[] _statementBlockerArray = new bool[1000];
@@ -74,7 +75,10 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
         {
             InitializeBase();
             BeforeStart();
-
+            foreach (var VARIABLE in _currentStatementFunctionList)
+            {
+                print("ростик");
+            }
 
             foreach (Enum enumOfFunction in _whatCanBeFunctionList)
             {
@@ -86,6 +90,7 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
                 a.name = enumOfFunction.ToString();
 
                 _functionsGameObject.Add(a);
+                
             }
 
             foreach (string statementStatemensAndItName in _statemensAndItNames)
@@ -97,7 +102,7 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
                 print(a);
 
                 a.GetComponent<TextMeshProUGUI>().SetText(statementStatemensAndItName);
-                _statementsGameObject.Add(a);
+             
             }
 
             _visualScriptingWindowGameObject.SetActive(false);
@@ -113,6 +118,10 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
             _visualScriptingInterpretator = Game.GameInst.ServiceLocatorInst.VisualScriptingInterpretatorServiceInst;
             _visualScriptingWindowGameObject = Instantiate(_visualScriptingWindow as GameObject,
                 GameObject.FindWithTag(Constants.MAINLEVELCANVASTAG).gameObject.transform);
+            for (int i = 0; i< 100; i++)
+            {
+                _currentStatementFunctionList.Add(new List<FunctionListEnum>());
+            }
         }
 
         public virtual void BeforeStart()
@@ -125,6 +134,9 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
             Statements();
             if ( Input.GetMouseButtonDown( 0 ) )
             {
+                print(_currentStatementFunctionList.Count);
+                
+                
                 Vector2 worldPoint = Camera.main.ScreenToWorldPoint( Input.mousePosition );
                 RaycastHit2D hit = Physics2D.Raycast( worldPoint, Vector2.zero );
                 if (hit.collider != null)
@@ -132,17 +144,21 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
                     if (hit.collider.gameObject.GetComponent<FunctionMarker>() != null)
                     {
                         _convertedEnum = Enum.Parse<FunctionListEnum>(hit.collider.gameObject.name, true);
+                        _functionInHands = hit.collider.gameObject;
                     }
 
-                    if (hit.collider.gameObject.GetComponent<StatementMarker>() != null)
+                    if (hit.collider.gameObject.GetComponent<StatementMarker>() != null & _functionInHands!=null)
                     {
+                       
                         
                         
-                        
-                        
-                        _currentStatementFunctionList[_statementsGameObject.IndexOf(hit.collider.gameObject)].Add(_convertedEnum);
-
+                     _currentStatementFunctionList[_functionsGameObject.IndexOf(_functionInHands)].Add(_convertedEnum);
+                
+                       
+                       
+                       
                         _functionInHands.transform.SetParent(hit.collider.gameObject.transform);
+                        _functionInHands = null;
                     }
             }
             }

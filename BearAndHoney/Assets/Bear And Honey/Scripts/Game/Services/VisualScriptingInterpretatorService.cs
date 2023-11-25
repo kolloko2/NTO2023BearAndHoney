@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Bear_And_Honey.Scripts.Game.VisualScripting
@@ -12,17 +13,22 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting
     public void RunFunctionList(List<FunctionListEnum> functionListEnums, GameObject objectCaller)
         {
 
+            foreach (var functionType in functionListEnums)
+            {           
 
-            foreach (FunctionListEnum functionType in functionListEnums)
-            {
                 switch (functionType)
                 {
                 
                     case FunctionListEnum.MoveLeft:
-                        objectCaller.transform.position += new Vector3(5, 5, 5);
+                        objectCaller.transform.Translate(5,5,1);
                         break;
                     case FunctionListEnum.MoveRight:
-                        objectCaller.transform.position += new Vector3(-5, -5, -5);
+                        for (int i = 0; i < 10; i++)
+                        {
+                            objectCaller.transform.position = Vector3.Lerp(objectCaller.transform.position,
+                                new Vector3(5, 5, 5), 0.1f);
+                        }
+
                         break;
                     default:
                         Debug.Log("Такой ENUM не назначен в кейсах, проспитесь");
