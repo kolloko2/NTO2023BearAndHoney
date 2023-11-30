@@ -23,11 +23,10 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting
                         objectCaller.transform.Translate(5,5,1);
                         break;
                     case FunctionListEnum.MoveRight:
-                        for (int i = 0; i < 10; i++)
-                        {
+                       
                             objectCaller.transform.position = Vector3.Lerp(objectCaller.transform.position,
-                                new Vector3(5, 5, 5), 0.1f);
-                        }
+                                new Vector3(10, 10, 5), 1f);
+                     
 
                         break;
                     default:

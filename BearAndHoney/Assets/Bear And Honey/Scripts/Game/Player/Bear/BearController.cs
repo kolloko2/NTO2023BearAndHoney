@@ -34,6 +34,7 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
 
             JumpWithCheckUpdate(); // Проверка на прыжок до платформы
             IsOnGround(); // проверка нахождениян а земле
+            SwapSides();
         }
 
 
@@ -87,6 +88,20 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
 
         private void SwapSides()
         {
+            if (Input.GetAxis("Horizontal") > 0)
+            {
+                gameObject.transform.localScale = new Vector3(1,transform.localScale.y,transform.localScale.z);
+                print(gameObject.transform.localScale);
+
+
+            }
+
+            if (Input.GetAxis("Horizontal") < 0)
+            {
+                gameObject.transform.localScale = new Vector3(-1,transform.localScale.y,transform.localScale.z);
+                print(gameObject.transform.localScale);
+
+            }
         }
 
         private void JumpWithCheck()
@@ -128,6 +143,7 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
             }
         }
 
+        /*
         private void CanDash()
         {
         }
@@ -136,7 +152,14 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
         {
             _playerRigidbody2D.AddForce(new Vector2(_dashSpeed, 0));
         }
+        */
 
+        
+        
+        
+        
+        
+        
         IEnumerator GroundToAirTimer()
         {
             yield return new WaitForSeconds(_timeFromGroundToAir);

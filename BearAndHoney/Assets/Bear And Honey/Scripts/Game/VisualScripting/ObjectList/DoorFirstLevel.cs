@@ -11,17 +11,17 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
         public override void BeforeStart()
         {
 
-            _statemensAndItNames.Add("Если ты Русский");
+            _statemensAndItNames.Add("Если ты 0 кордах");
+            
             
         }
 
         
     public override void Statements()
         {
-            print(transform.position);
-            if (transform.position==new Vector3(0,0,0) & !_statementBlockerArray[0])
+            if (transform.position==new Vector3(0,0,0) & !_statementBlockerArray[0]) // всегда  !_statementBlockerArray[0] вместо номер условия 0=>100
             {
-                StatementBlockerAndRunner(0);
+                StatementBlockerAndRunner(0); // опять номер условия
             }
             
 
