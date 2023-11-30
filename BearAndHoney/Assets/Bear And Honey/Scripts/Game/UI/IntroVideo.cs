@@ -23,7 +23,11 @@ public class IntroVideo : MonoBehaviour
     void LoadNextScene(VideoPlayer videoPlayer)
     {
         Debug.Log("123");
-        Game.GameInst.ServiceLocatorInst.SceneLoaderServiceInst.Load(Constants.FIRTQUESTLEVELSCENE);
+        Game.GameInst.ServiceLocatorInst.SceneLoaderServiceInst.LoadScene(Constants.FIRTQUESTLEVELSCENE);
+        
+        
+        
+   
     }
  
 }

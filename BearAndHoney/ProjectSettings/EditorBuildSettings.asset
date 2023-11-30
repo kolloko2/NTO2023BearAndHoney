@@ -5,25 +5,31 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/TestMenu.unity
-    guid: 0f66d95c6a648824798cb4be9ef66292
-  - enabled: 0
-    path: Assets/Scenes/Level 1.unity
-    guid: 8a499cc6470cfdd49bda0500666a5d30
+  - enabled: 1
+    path: Assets/Bear And Honey/Scenes/BootstrapScene.unity
+    guid: d39338ba430f3c742981f1293f03ee13
   - enabled: 1
     path: Assets/Bear And Honey/Scenes/MainMenuScene.unity
     guid: 00cebc9ae6bd708478ae562f8fe2719f
   - enabled: 1
-    path: Assets/Bear And Honey/Scenes/FirstQuestLevelScene.unity
-    guid: aa3846709b1afaa40bd0c44f0d256ec2
-  - enabled: 1
-    path: Assets/Bear And Honey/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
     path: Assets/Bear And Honey/Scenes/VideoIntroScene.unity
     guid: dde7a2f7837036a4e883064ebb7a2624
   - enabled: 1
-    path: Assets/Bear And Honey/Scenes/BootstrapScene.unity
-    guid: d39338ba430f3c742981f1293f03ee13
+    path: Assets/Bear And Honey/Scenes/FirstQuestLevelScene.unity
+    guid: aa3846709b1afaa40bd0c44f0d256ec2
+  - enabled: 1
+    path: Assets/Bear And Honey/Scenes/SecondQuestLevelScene.unity
+    guid: b5187ac56ae8f5e4f9338715e0fb7794
+  - enabled: 1
+    path: Assets/Bear And Honey/Scenes/ThirdQuestLevelScene.unity
+    guid: ba0dc2305d3112e4b9619bf00f00c4ca
+  - enabled: 1
+    path: Assets/Bear And Honey/Scenes/FourQuestLevelScene.unity
+    guid: 2ce6e7387c1276d45b37e928673bb880
+  - enabled: 1
+    path: Assets/Bear And Honey/Scenes/FiveQuestLevelScene.unity
+    guid: 279ccdb9bb8c27b49a42abe6f989facd
+  - enabled: 1
+    path: Assets/Bear And Honey/Scenes/SampleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

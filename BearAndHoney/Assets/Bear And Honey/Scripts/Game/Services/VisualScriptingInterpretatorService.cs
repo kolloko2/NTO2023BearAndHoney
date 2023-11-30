@@ -24,11 +24,10 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting
                         break;
                     case FunctionListEnum.MoveRight:
                        
-                            objectCaller.transform.position = Vector3.Lerp(objectCaller.transform.position,
-                                new Vector3(10, 10, 5), 1f);
-                     
-
+                        objectCaller.transform.Translate(15,15,1);
                         break;
+                    
+                    
                     default:
                         Debug.Log("Такой ENUM не назначен в кейсах, проспитесь");
                         break;

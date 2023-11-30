@@ -22,9 +22,11 @@ namespace Bear_And_Honey.Scripts.Game.UI
             gameObject.GetComponent<Canvas>().worldCamera=Camera.main;
             gameObject.SetActive(true);
             
+            
             _alphaChannel = 1f;
             Curtain.alpha = 1;
             LoadingScreenSpriteRender.color= new Color(LoadingScreenSpriteRender.color.r,LoadingScreenSpriteRender.color.g,LoadingScreenSpriteRender.color.b,_alphaChannel);
+            
         }
 
         public void Hide()

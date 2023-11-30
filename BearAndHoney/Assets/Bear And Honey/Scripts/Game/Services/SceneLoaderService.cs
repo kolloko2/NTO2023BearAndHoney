@@ -25,19 +25,18 @@ namespace Bear_And_Honey.Scripts.Game.Services
 
         }
 
-        public void Load(string name, Action onLoaded = null) =>
+        public void LoadScene(string name, Action onLoaded = null) =>
             _coroutineRunner.StartCoroutine(LoadSceneCoroutine(name, onLoaded)); // при вызове лоада вызываем корутины для ассинх операции
         
         
-        
-        
+        public void LoadScene(int index, Action onLoaded = null) =>
+            _coroutineRunner.StartCoroutine(LoadSceneCoroutine(index, onLoaded)); // при вызове лоада вызываем корутины для ассинх операции
         
         public IEnumerator LoadSceneCoroutine(string name, Action onLoaded = null)
         {
-            
             _loadingCurtains.Show();
-
-            AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(name); // Вызываем AsyncОперацию которая является загрузкой сцены по имени
+            
+            AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(name); // Вызываем Async Операцию которая является загрузкой сцены по имени
 
 
             while (!waitNextScene.isDone) // пока сцена не загруженна входим в бескоч цикл
@@ -53,7 +52,25 @@ namespace Bear_And_Honey.Scripts.Game.Services
         }
         
         
-    
+        public IEnumerator LoadSceneCoroutine(int index, Action onLoaded = null)
+        {
+            
+            _loadingCurtains.Show();
+            
+            AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(index); // Вызываем AsyncОперацию которая является загрузкой сцены по имени
+
+
+            while (!waitNextScene.isDone) // пока сцена не загруженна входим в бескоч цикл
+            {
+
+                yield return null;
+            }
+            _loadingCurtains.Hide();
+            
+
+
+
+        }
     
     }
 }

@@ -12,7 +12,10 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
     public abstract class VisualScriptingObject : MonoBehaviour
     {
         protected List<List<FunctionListEnum>> _currentStatementFunctionList = new List<List<FunctionListEnum>>();
+        protected List<List<GameObject>> _currentStatementGameobjectList = new List<List<GameObject>>();
 
+        protected List<GameObject> _statementsGameObject = new List<GameObject>();
+        protected List<GameObject> _lastFunctions = new List<GameObject>();
 
         [SerializeField] FunctionListEnum[] _whatCanBeFunctionList;
         protected VisualScriptingInterpretatorService _visualScriptingInterpretator;
@@ -27,7 +30,6 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
         protected Object _function;
 
         protected GameObject _visualScriptingWindowGameObject;
-        protected List<GameObject> _statementsGameObject = new List<GameObject>();
         protected List<GameObject> _functionsGameObject = new List<GameObject>();
         private static Action<GameObject> VisualSCriptingWindowShow;
         [SerializeField] GameObject _functionInHands;
@@ -76,13 +78,13 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
             BeforeStart();
 
 
-            foreach (Enum enumOfFunction in _whatCanBeFunctionList)
+            foreach (FunctionListEnum enumOfFunction in _whatCanBeFunctionList)
             {
                 GameObject a = Instantiate(_function as GameObject,
-                    _visualScriptingWindowGameObject.GetComponentInChildren<FunctuionListLayoutMarker>().gameObject
+                    _visualScriptingWindowGameObject.GetComponentInChildren<FunctionListLayoutMarker>().gameObject
                         .transform);
 
-                a.GetComponent<TextMeshProUGUI>().SetText(enumOfFunction.ToString());
+                a.GetComponent<TextMeshProUGUI>().SetText(Constants.FUNCTIONTRANSLATIONDICTIONARY[enumOfFunction]);
                 a.name = enumOfFunction.ToString();
 
                 _functionsGameObject.Add(a);
@@ -90,13 +92,14 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
 
             foreach (string statementStatemensAndItName in _statemensAndItNames)
             {
-                print(0);
+    
                 GameObject a = Instantiate(_statement as GameObject,
                     _visualScriptingWindowGameObject.GetComponentInChildren<StatementListMarker>().gameObject
                         .transform);
-                print(a);
+               
 
                 a.GetComponent<TextMeshProUGUI>().SetText(statementStatemensAndItName);
+                _statementsGameObject.Add(a);
             }
 
             _visualScriptingWindowGameObject.SetActive(false);
@@ -115,6 +118,7 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
             for (int i = 0; i < 100; i++)
             {
                 _currentStatementFunctionList.Add(new List<FunctionListEnum>());
+                _currentStatementGameobjectList.Add(new List<GameObject>());
             }
         }
 
@@ -126,33 +130,87 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
         public void Update()
         {
             Statements();
+
+
+            
             if (Input.GetMouseButtonDown(0))
             {
-            
+
 
 
                 Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
                 if (hit.collider != null)
                 {
-                    if (hit.collider.gameObject.GetComponent<FunctionMarker>() != null)
+               
+                    if ((hit.collider.gameObject.GetComponent<FunctionMarker>() != null) & !_functionInHands)
                     {
                         _convertedEnum = Enum.Parse<FunctionListEnum>(hit.collider.gameObject.name, true);
                         _functionInHands = hit.collider.gameObject;
+                        _functionInHands.GetComponent<TextMeshProUGUI>().color = Color.green;
+
                     }
 
-                    if (hit.collider.gameObject.GetComponent<StatementMarker>() != null & _functionInHands != null)
+                    if (hit.collider.gameObject.GetComponent<StatementMarker>() != null & _functionInHands != null) 
                     {
-                        _currentStatementFunctionList[_functionsGameObject.IndexOf(_functionInHands)]
-                            .Add(_convertedEnum);
+                        if (!_functionInHands.GetComponent<FunctionMarker>().Busy)
+                        {
+                            _currentStatementFunctionList[_statementsGameObject.IndexOf(hit.collider.gameObject)].Add(_convertedEnum);
+                            _currentStatementGameobjectList[_statementsGameObject.IndexOf(hit.collider.gameObject)].Add(_functionInHands);
+                            _functionInHands.GetComponent<FunctionMarker>().Busy = true;
 
+                            _functionInHands.transform.SetParent(hit.collider.gameObject.transform);
+                            _functionInHands.GetComponent<FunctionMarker>().CurrentStatement = _statementsGameObject.IndexOf(hit.collider.gameObject);
+                            _functionInHands.GetComponent<TextMeshProUGUI>().color = Color.white;
 
-                        _functionInHands.transform.SetParent(hit.collider.gameObject.transform);
-                        _functionInHands = null;
+                            _functionInHands = null;
+                        }
+
                     }
+                    
+                    if (hit.collider.gameObject.tag == "FunctionList" & _functionInHands != null)
+                    {
+                        if(_functionInHands.GetComponent<FunctionMarker>().Busy)
+                        {
+
+                            int index = _currentStatementGameobjectList[_functionInHands.GetComponent<FunctionMarker>().CurrentStatement].IndexOf(_functionInHands);
+                            print(_functionInHands.GetComponent<FunctionMarker>().CurrentStatement);
+                            print(index);
+                            foreach (var VARIABLE in _currentStatementGameobjectList[index])
+                            {
+                                print(VARIABLE);
+                            }
+                        _currentStatementGameobjectList[_functionInHands.GetComponent<FunctionMarker>().CurrentStatement].RemoveAt(index);
+                        _currentStatementFunctionList[_functionInHands.GetComponent<FunctionMarker>().CurrentStatement].RemoveAt(index);
+
+                        
+                        _functionInHands.GetComponent<FunctionMarker>().CurrentStatement =  -1;
+                        _functionInHands.GetComponent<FunctionMarker>().Busy = false;
+                        _functionInHands.transform.SetParent(hit.collider.gameObject.transform.GetComponentInChildren<FunctionListLayoutMarker>().gameObject.transform);
+                        _functionInHands.GetComponent<TextMeshProUGUI>().color = Color.white;
+
+                        _functionInHands = null;
+                        }
+                        else
+                        {
+                            _functionInHands.GetComponent<TextMeshProUGUI>().color = Color.white;
+
+                            _functionInHands = null;
+
+                        }
+                    }
+                
                 }
+                
             }
-        }
+
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                Debug.Log(_statementsGameObject.Count);
+            //   _statementsGameObject[_statementsGameObject.Count-1].tra.SetParent( _visualScriptingWindowGameObject.GetComponentInChildren<StatementListMarker>().transform);
+               
+            }
+    }
 
 
         public virtual void Statements()

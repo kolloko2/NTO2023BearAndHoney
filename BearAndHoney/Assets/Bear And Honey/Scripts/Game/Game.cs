@@ -21,7 +21,7 @@ namespace Bear_And_Honey.Scripts.Game
                 ServiceLocatorInst = new ServicesLocator(); // Создаем сервис локатор
 
 
-                ServiceLocatorInst.SceneLoaderServiceInst.Load(Constants.MAINMENUSCENE);
+                ServiceLocatorInst.SceneLoaderServiceInst.LoadScene(Constants.MAINMENUSCENE);
 
             }
             else 
