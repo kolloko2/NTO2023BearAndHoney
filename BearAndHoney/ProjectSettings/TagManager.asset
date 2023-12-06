@@ -8,6 +8,7 @@ TagManager:
   - FunctionList
   - StatementList
   - MainLevelCanvas
+  - ShootPoint
   layers:
   - Default
   - TransparentFX

@@ -23,16 +23,26 @@ public class LoadSceneButton : MonoBehaviour
     }
     public void LoadSavedLevel()
     {
-        if (PlayerPrefs.GetInt("FIRSTTIMEINGAME")==1)
+        if (PlayerPrefs.GetInt("FIRSTTIMEINGAME",0)==0)
         {
-            Game.GameInst.ServiceLocatorInst.SceneLoaderServiceInst.LoadScene(Constants.FIRTQUESTLEVELSCENE);
-            
+            print(123);
+            Game.GameInst.ServiceLocatorInst.SceneLoaderServiceInst.LoadScene(Constants.VIDEOINTROSCENE);
+            PlayerPrefs.SetInt("FIRSTTIMEINGAME",1);
 
             
             
             
         }
             
+        else if  (PlayerPrefs.GetInt("Level",0)==0)
+        {
+            Game.GameInst.ServiceLocatorInst.SceneLoaderServiceInst.LoadScene(Constants.FIRTQUESTLEVELSCENE);
+
+            
+            
+            
+        }
+        
         else
         {
             Game.GameInst.ServiceLocatorInst.SceneLoaderServiceInst.LoadScene(PlayerPrefs.GetInt("Level"));

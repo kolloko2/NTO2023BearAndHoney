@@ -7,7 +7,7 @@ namespace Bear_And_Honey.Scripts.Game.Services
         public SceneLoaderService SceneLoaderServiceInst;
         public ComputerInputService ComputerInputServiceInst;
         public VisualScriptingInterpretatorService VisualScriptingInterpretatorServiceInst;
-      
+        public ActionService ActionServiceInst;
 
 
         public ServicesLocator()
@@ -16,6 +16,7 @@ namespace Bear_And_Honey.Scripts.Game.Services
             
             SceneLoaderServiceInst = new SceneLoaderService(); // создаем сервер для смены сцен
             VisualScriptingInterpretatorServiceInst = new VisualScriptingInterpretatorService();
+            ActionServiceInst = new ActionService();
         }
     }
 }

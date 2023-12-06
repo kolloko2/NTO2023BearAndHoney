@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Bear_And_Honey.Scripts.Game.Player.Bear
 {
-    public class PlayerController : MonoBehaviour
+    public class BearController : MonoBehaviour
     {
         [SerializeField] private LayerMask _groundLayerMask = 10;
         [SerializeField] private float _playerSpeed = 5;
@@ -26,6 +27,12 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
         private void Start()
         {
             _playerRigidbody2D = GetComponent<Rigidbody2D>();
+           
+        }
+
+        private void OnEnable()
+        {
+            Game.GameInst.ServiceLocatorInst.ActionServiceInst.BearDeathAction += BearDeath;
         }
 
         private void Update()
@@ -127,6 +134,13 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
             _isJumping = true;
             yield return new WaitForSeconds(0.1f);
             _isJumping = false;
+        }
+
+
+        private void BearDeath(GameObject objectSender)
+        {
+            
+            print("ой");
         }
         
         private void IsOnGround()

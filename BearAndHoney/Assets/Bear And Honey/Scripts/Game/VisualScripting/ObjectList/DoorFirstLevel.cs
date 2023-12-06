@@ -19,7 +19,7 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
         
     public override void Statements()
     {
-        StatementsAdder();
+              StatementsAdder();
             if (transform.position==new Vector3(0,0,0) & !_statementBlockerArray[0]) // всегда  !_statementBlockerArray[0] вместо номер условия 0=>100
             {
                 StatementBlockerAndRunner(0); // опять номер условия
@@ -34,6 +34,7 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
     public void StatementsAdder()
     {
         if (_statementBlockerArray[0])
+            
         {
         a += Time.deltaTime;
             
