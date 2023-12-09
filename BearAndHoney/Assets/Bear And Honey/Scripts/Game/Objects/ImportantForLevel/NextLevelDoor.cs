@@ -21,11 +21,16 @@ public class NextLevelDoor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.gameObject.tag=="Player")
+        {
+            
+            
         int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
         PlayerPrefs.SetInt("Level",nextScene);
         PlayerPrefs.Save();
         print(gameObject.name);
          Game.GameInst.ServiceLocatorInst.SceneLoaderServiceInst.LoadScene(nextScene);
+        }
     
      
     

@@ -23,11 +23,18 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
         [SerializeField] private bool _isJumping;
         private Rigidbody2D _playerRigidbody2D;
         [SerializeField] private float currentTimeAirToGround;
+        [SerializeField] private bool _inPhone;
+        [SerializeField] private GameObject _beePrefab;
 
+        [SerializeField]
+        private GameObject _beeCircle;
+        private Animator _bearAnimator;
+        private GameObject _bee;
         private void Start()
         {
             _playerRigidbody2D = GetComponent<Rigidbody2D>();
-           
+            _bearAnimator = GetComponent<Animator>();
+            
         }
 
         private void OnEnable()
@@ -42,8 +49,27 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
             JumpWithCheckUpdate(); // Проверка на прыжок до платформы
             IsOnGround(); // проверка нахождениян а земле
             SwapSides();
+            BeeCheck();
         }
 
+        private void BeeCheck()
+        {
+            if (Input.GetKeyDown(KeyCode.Q) & _playerRigidbody2D.velocity.x==0 & _playerRigidbody2D.velocity.y==0 & !_inPhone)
+            {
+                _inPhone = true;
+                 _bee = Instantiate(_beePrefab, gameObject.transform.position, gameObject.transform.rotation);
+                 _beeCircle.SetActive(true);
+
+            }
+            else if (Input.GetKeyDown(KeyCode.Q) & _inPhone)
+            {
+                _bee.transform.DetachChildren();
+                _inPhone = false;
+                _beeCircle.SetActive(false);
+                Destroy(_bee);
+            }
+            
+        }
 
 
 
@@ -88,17 +114,29 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
 
         private void FixedUpdate()
         {
-            _playerRigidbody2D.velocity =
-                new Vector2(Input.GetAxis("Horizontal") * _playerSpeed, _playerRigidbody2D.velocity.y);
+            if (Input.GetAxis("Horizontal")!=0 & !_inPhone)
+            {
+                
+                _playerRigidbody2D.velocity =
+                    new Vector2(Input.GetAxis("Horizontal") * _playerSpeed, _playerRigidbody2D.velocity.y);
+                _bearAnimator.SetBool("Runing",true);
+
+            }
+            else
+            {
+                _bearAnimator.SetBool("Runing",false);
+            }
         }
 
 
         private void SwapSides()
         {
-            if (Input.GetAxis("Horizontal") > 0)
+            if(!_inPhone)
+            {
+                if (Input.GetAxis("Horizontal") > 0)
             {
                 gameObject.transform.localScale = new Vector3(1,transform.localScale.y,transform.localScale.z);
-                print(gameObject.transform.localScale);
+        
 
 
             }
@@ -106,8 +144,9 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
             if (Input.GetAxis("Horizontal") < 0)
             {
                 gameObject.transform.localScale = new Vector3(-1,transform.localScale.y,transform.localScale.z);
-                print(gameObject.transform.localScale);
+              
 
+            }
             }
         }
 
@@ -123,7 +162,7 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
 
         private void Jump()
         {
-            
+            _bearAnimator.SetTrigger("Jumping");
             _isOnGround = false;
             StartCoroutine("JumpCooldown");
             _playerRigidbody2D.AddForce(new Vector2(0, _jumpForce), ForceMode2D.Impulse);
