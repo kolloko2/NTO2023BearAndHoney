@@ -105,7 +105,7 @@ MonoBehaviour:
   _inHands: {fileID: 0}
   _signalLoseTextPrefab: {fileID: 7405669555884874962, guid: 9be5392ef0ce52f4da95c6041b137a5f,
     type: 3}
-  _pickUpOffset: 0.28
+  _pickUpOffset: 0.3
 --- !u!61 &2907293505526212413
 BoxCollider2D:
   m_ObjectHideFlags: 0

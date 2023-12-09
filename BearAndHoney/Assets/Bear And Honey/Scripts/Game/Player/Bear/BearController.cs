@@ -12,6 +12,7 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
     {
         [SerializeField] private LayerMask _groundLayerMask = 10;
         [SerializeField] private float _playerSpeed = 5;
+        [SerializeField] private float _playerSpeedBase= 5;
         [SerializeField] private float _jumpForce = 5;
         [SerializeField] private float _timeFromGroundToAir = 0.2f;
         [SerializeField] private float _timeFromAirToGround = 0.2f;
@@ -25,11 +26,14 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
         [SerializeField] private float currentTimeAirToGround;
         [SerializeField] private bool _inPhone;
         [SerializeField] private GameObject _beePrefab;
-
+        [SerializeField] private float _timeForSpeedLose=25f;
+        [SerializeField] private bool _isEating;
         [SerializeField]
         private GameObject _beeCircle;
         private Animator _bearAnimator;
         private GameObject _bee;
+        [SerializeField]  private float _currentEatPause;
+
         private void Start()
         {
             _playerRigidbody2D = GetComponent<Rigidbody2D>();
@@ -50,11 +54,30 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
             IsOnGround(); // проверка нахождениян а земле
             SwapSides();
             BeeCheck();
+            EatNeed();
         }
 
+        private void EatNeed()
+        {
+            _currentEatPause += Time.deltaTime;
+            if (_timeForSpeedLose <= _currentEatPause)
+            {
+                _playerSpeed = _playerSpeedBase / 2;
+            }
+            else
+            {
+                _playerSpeed = _playerSpeedBase;
+            }
+
+            if (Input.GetKeyDown(KeyCode.O)  & _playerRigidbody2D.velocity.x==0 & _playerRigidbody2D.velocity.y==0 & !_inPhone & ! _isEating)
+            {
+                _bearAnimator.SetTrigger("Eating");
+                _currentEatPause = 0;
+            }
+        }
         private void BeeCheck()
         {
-            if (Input.GetKeyDown(KeyCode.Q) & _playerRigidbody2D.velocity.x==0 & _playerRigidbody2D.velocity.y==0 & !_inPhone)
+            if (Input.GetKeyDown(KeyCode.Q) & _playerRigidbody2D.velocity.x==0 & _playerRigidbody2D.velocity.y==0 & !_inPhone & ! _isEating)
             {
                 _inPhone = true;
                  _bee = Instantiate(_beePrefab, gameObject.transform.position, gameObject.transform.rotation);
@@ -92,11 +115,11 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
             
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (_isOnGround)
+                if (_isOnGround & !_isEating & !_inPhone)
                 {
                     Jump();
                 }
-                else
+                else if (_isOnGround==false)
 
                 {
                     StartCoroutine("AirToGroundTimer");
@@ -114,7 +137,7 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
 
         private void FixedUpdate()
         {
-            if (Input.GetAxis("Horizontal")!=0 & !_inPhone)
+            if (Input.GetAxis("Horizontal")!=0 & !_inPhone & !_isEating)
             {
                 
                 _playerRigidbody2D.velocity =

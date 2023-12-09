@@ -43,5 +43,9 @@ public class ShootingBeeTrapBolt : MonoBehaviour
            
             Destroy(gameObject);
         }
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
