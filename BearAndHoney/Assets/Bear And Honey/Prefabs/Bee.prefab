@@ -101,11 +101,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.1
-  _pickUpRadius: 0.21
+  _pickUpRadius: 0.15
   _inHands: {fileID: 0}
   _signalLoseTextPrefab: {fileID: 7405669555884874962, guid: 9be5392ef0ce52f4da95c6041b137a5f,
     type: 3}
-  _pickUpOffset: 0.24
+  _pickUpOffset: 0.28
 --- !u!61 &2907293505526212413
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -138,7 +138,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00000023841858, y: -0.09609848}
+  m_Offset: {x: 0.00000023841858, y: -0.035682976}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -149,7 +149,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7332673, y: 0.31302035}
+  m_Size: {x: 0.7332673, y: 0.19218934}
   m_EdgeRadius: 0
 --- !u!95 &2059945030906989521
 Animator:
