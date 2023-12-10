@@ -595,8 +595,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8201847025580636463, guid: c1d480aa5c09d354d9a7e717e78af79e,
         type: 3}
+      propertyPath: m_text
+      value: LOADING
+      objectReference: {fileID: 0}
+    - target: {fileID: 8201847025580636463, guid: c1d480aa5c09d354d9a7e717e78af79e,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: a24adc6ec2504cb4da47e45db71afff7,
+        type: 2}
+    - target: {fileID: 8201847025580636463, guid: c1d480aa5c09d354d9a7e717e78af79e,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 6644848090770154709, guid: a24adc6ec2504cb4da47e45db71afff7,
+        type: 2}
+    - target: {fileID: 8201847025580636463, guid: c1d480aa5c09d354d9a7e717e78af79e,
+        type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 2952790015
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8201847025580636463, guid: c1d480aa5c09d354d9a7e717e78af79e,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

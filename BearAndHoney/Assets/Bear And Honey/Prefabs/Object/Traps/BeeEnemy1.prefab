@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7809361065353572341}
   - component: {fileID: 9111766506963827312}
   - component: {fileID: 5515254760289310040}
+  - component: {fileID: 1828060284985875057}
   m_Layer: 0
   m_Name: BeeEnemy
   m_TagString: Untagged
@@ -124,6 +125,51 @@ MonoBehaviour:
   _target: {fileID: 6591486322217410491}
   _targetStop: {fileID: 6591486322217410491}
   _targetStart: {fileID: 28640159911851641}
+--- !u!61 &1828060284985875057
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045266844124258189}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.039645195, y: -0.05550325}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.0971428, y: 0.61714286}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.48264313, y: 0.35944867}
+  m_EdgeRadius: 0
 --- !u!1 &2464777334573111154
 GameObject:
   m_ObjectHideFlags: 0

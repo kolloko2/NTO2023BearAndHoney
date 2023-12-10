@@ -6,7 +6,7 @@ namespace Bear_And_Honey.Scripts.Game.Services
     public class ActionService
     {
 
-        public  Action<GameObject> BearDeathAction;
+        public  Action BearDeathAction;
         public ActionService()
         {
             
@@ -15,7 +15,7 @@ namespace Bear_And_Honey.Scripts.Game.Services
 
         public void BearDeathActionCaller(GameObject gameObject)
         {
-            BearDeathAction?.Invoke(gameObject);
+            BearDeathAction?.Invoke();
         }
     }
 }   

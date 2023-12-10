@@ -49,7 +49,7 @@ public class BeeEnemy : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<BearController>())
+        if (other.gameObject.tag=="Player")
         {
             Game.GameInst.ServiceLocatorInst.ActionServiceInst.BearDeathActionCaller(gameObject);
            
