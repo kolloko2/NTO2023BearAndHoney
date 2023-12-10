@@ -5,6 +5,10 @@ using UnityEngine;
 public class FirstDoor : MonoBehaviour
 {
     [SerializeField] private GameObject _secondDoor;
+
+    [SerializeField] private SpriteRenderer _openDoor;
+
+    [SerializeField] private SpriteRenderer _closeDoor;
     // Start is called before the first frame update
     void Start()
     {
