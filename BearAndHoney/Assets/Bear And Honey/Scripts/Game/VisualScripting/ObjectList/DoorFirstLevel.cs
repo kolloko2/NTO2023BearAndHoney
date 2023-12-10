@@ -18,7 +18,7 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
         private bool _bearNear;
 
         private bool _bearRuned;
-        private float ComeTime = 0;
+        [SerializeField]private float ComeTime = 0;
         public GameObject FirstDoor;
         public GameObject Shipi;
 
@@ -53,6 +53,7 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
                     if (ComeTime >= 5 & !_statementBlockerArray[2])
                     {
                         StatementBlockerAndRunner(2);
+                        print(123);
                     }
                 }
             }
