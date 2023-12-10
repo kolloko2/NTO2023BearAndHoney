@@ -7,7 +7,9 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting
 
         MoveLeft,
         MoveRight,
-        AddWeight,
+        OpenFirstDoor,
+        CloseFirstDoor,
+        DestroyShips,
 
      
     

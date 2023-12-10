@@ -33,7 +33,7 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
         protected List<GameObject> _functionsGameObject = new List<GameObject>();
         private static Action<GameObject> VisualSCriptingWindowShow;
         [SerializeField] GameObject _functionInHands;
-
+        protected bool _started;
         RaycastHit2D _raycastHit2D;
         Ray _raycast2D;
         private GameObject _functionList;
@@ -132,7 +132,11 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
             Statements();
 
 
-            
+            if (_visualScriptingWindowGameObject.GetComponent<StartVisualButton>().Started)
+            {
+                _started = true;
+                _visualScriptingWindowGameObject.SetActive(false);
+            }
             if (Input.GetMouseButtonDown(0))
             {
 

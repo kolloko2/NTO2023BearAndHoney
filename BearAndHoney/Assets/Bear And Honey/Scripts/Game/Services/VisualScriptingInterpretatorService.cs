@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -26,6 +27,24 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting
                        
                         objectCaller.transform.Translate(15,15,1);
                         break;
+                    case FunctionListEnum.DestroyShips:
+                    {
+                        if (objectCaller.GetComponent<DoorFirstLevel>() != null)
+                        {
+                            GameObject.Destroy(objectCaller.GetComponent<DoorFirstLevel>().Shipi);
+
+                        }
+                        break;   
+                    }
+                case FunctionListEnum.OpenFirstDoor:
+                { objectCaller.GetComponent<DoorFirstLevel>().FirstDoor.GetComponent<FirstDoor>().Open();
+                    break; 
+                }
+                case FunctionListEnum.CloseFirstDoor:
+                {
+                    objectCaller.GetComponent<DoorFirstLevel>().FirstDoor.GetComponent<FirstDoor>().Open();
+                    break; 
+                }
                     
                     
                     default:
