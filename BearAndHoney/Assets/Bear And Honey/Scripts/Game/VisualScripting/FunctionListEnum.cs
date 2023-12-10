@@ -10,6 +10,17 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting
         OpenFirstDoor,
         CloseFirstDoor,
         DestroyShips,
+        TurnOnVent,
+        UpVent,
+        DownVent,
+        GiveEnergy,
+        GiveEnergyVNikuda,
+        GiveEnergyVNikuda2,
+        SendCodeOneFirst,
+        SendCodeTwoFirst,
+        SendCodeOneSecond,
+        SendCodeTwoSecond,
+        TurnOnBlackHole,
 
      
     

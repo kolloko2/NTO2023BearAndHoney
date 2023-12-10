@@ -22,9 +22,18 @@ namespace Bear_And_Honey.Scripts.Game
            { FunctionListEnum.MoveRight, "Подвинуться направо"},
            { FunctionListEnum.DestroyShips, "Уничтожить шипы" },
            { FunctionListEnum.OpenFirstDoor, "Открыть первую дверь"},
-           { FunctionListEnum.CloseFirstDoor, "Закрыть первую дверь"}
-           
-           
+           { FunctionListEnum.CloseFirstDoor, "Закрыть первую дверь"},
+           { FunctionListEnum.TurnOnVent, "Включить вентиляторы" },
+       { FunctionListEnum.UpVent, "Режим работы вверх"},
+       { FunctionListEnum.DownVent, "Режим работы вниз"},
+       { FunctionListEnum.GiveEnergy, "Подать энергию на вентилятор"},
+       { FunctionListEnum.GiveEnergyVNikuda, "Подать энергию на двери"},
+       { FunctionListEnum.GiveEnergyVNikuda2, "Подать энергию на рычаг"},
+       { FunctionListEnum.SendCodeOneFirst, "Подать сигнал один"},
+       { FunctionListEnum.SendCodeOneSecond, "Подать сигнал два"},
+       { FunctionListEnum.SendCodeTwoFirst, "Подать сигнал один"},
+       { FunctionListEnum.SendCodeTwoSecond, "Подать сигнал два"},
+       { FunctionListEnum.TurnOnBlackHole, "Включить кротовую нору"}
        };
 
     }

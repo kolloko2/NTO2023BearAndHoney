@@ -19,17 +19,11 @@ EditorBuildSettings:
     guid: aa3846709b1afaa40bd0c44f0d256ec2
   - enabled: 1
     path: Assets/Bear And Honey/Scenes/SecondQuestLevelScene.unity
-    guid: b5187ac56ae8f5e4f9338715e0fb7794
+    guid: 3742aaba999dbaf4eb882b6a0ffb6ef6
   - enabled: 1
-    path: Assets/Bear And Honey/Scenes/ThirdQuestLevelScene.unity
-    guid: ba0dc2305d3112e4b9619bf00f00c4ca
+    path: Assets/Bear And Honey/Scenes/ThirdQuestLevelScene 1.unity
+    guid: ead166178bd67f341ab696a2b98b43fe
   - enabled: 1
-    path: Assets/Bear And Honey/Scenes/FourQuestLevelScene.unity
-    guid: 2ce6e7387c1276d45b37e928673bb880
-  - enabled: 1
-    path: Assets/Bear And Honey/Scenes/FiveQuestLevelScene.unity
-    guid: 279ccdb9bb8c27b49a42abe6f989facd
-  - enabled: 1
-    path: Assets/Bear And Honey/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Bear And Honey/Scenes/MainMenuScene 1.unity
+    guid: 9ac74dc6c5ec36144ab0c7a32600539b
   m_configObjects: {}

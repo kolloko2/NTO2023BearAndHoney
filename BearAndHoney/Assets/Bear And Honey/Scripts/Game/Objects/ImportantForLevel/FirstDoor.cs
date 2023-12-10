@@ -6,9 +6,9 @@ public class FirstDoor : MonoBehaviour
 {
     [SerializeField] private GameObject _secondDoor;
 
-    [SerializeField] private SpriteRenderer _openDoor;
+    [SerializeField] private Sprite _openDoor;
 
-    [SerializeField] private SpriteRenderer _closeDoor;
+    [SerializeField] private Sprite _closeDoor;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +24,9 @@ public class FirstDoor : MonoBehaviour
     public void Open()
     {
         gameObject.GetComponent<Collider2D>().enabled = false;
+        gameObject.GetComponent<SpriteRenderer>().sprite = _openDoor;
         _secondDoor.GetComponent<Collider2D>().enabled = true;
+        _secondDoor.GetComponent<SpriteRenderer>().sprite = _closeDoor;
     }
 
 
@@ -32,7 +34,9 @@ public class FirstDoor : MonoBehaviour
     public void Close()
     {
         gameObject.GetComponent<Collider2D>().enabled = true;
+        gameObject.GetComponent<SpriteRenderer>().sprite =  _closeDoor;
         _secondDoor.GetComponent<Collider2D>().enabled = false;
+        _secondDoor.GetComponent<SpriteRenderer>().sprite = _openDoor;
         
     }
 }

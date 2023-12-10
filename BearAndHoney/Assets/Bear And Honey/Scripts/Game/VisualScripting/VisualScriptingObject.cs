@@ -47,6 +47,10 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
         {
             VisualSCriptingWindowShow += ShowOrHide;
         }
+        private void OnDisable()
+        {
+            VisualSCriptingWindowShow -= ShowOrHide;
+        }
 
         public void FixedUpdate()
         {
@@ -130,14 +134,14 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
         public void Update()
         {
             Statements();
-
+print(_functionInHands);
 
             if (_visualScriptingWindowGameObject.GetComponent<StartVisualButton>().Started)
             {
                 _started = true;
                 _visualScriptingWindowGameObject.SetActive(false);
             }
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) & _visualScriptingWindowGameObject.activeSelf)
             {
 
 
@@ -178,8 +182,11 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
                         {
 
                             int index = _currentStatementGameobjectList[_functionInHands.GetComponent<FunctionMarker>().CurrentStatement].IndexOf(_functionInHands);
-                           
+                            print(index);
+                            print(_currentStatementGameobjectList[
+                                _functionInHands.GetComponent<FunctionMarker>().CurrentStatement].Count);
                         _currentStatementGameobjectList[_functionInHands.GetComponent<FunctionMarker>().CurrentStatement].RemoveAt(index);
+                   
                         _currentStatementFunctionList[_functionInHands.GetComponent<FunctionMarker>().CurrentStatement].RemoveAt(index);
 
                         
