@@ -42,7 +42,7 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting
                 }
                 case FunctionListEnum.CloseFirstDoor:
                 {
-                    objectCaller.GetComponent<DoorFirstLevel>().FirstDoor.GetComponent<FirstDoor>().Open();
+                    objectCaller.GetComponent<DoorFirstLevel>().FirstDoor.GetComponent<FirstDoor>().Close();
                     break; 
                 }
                     

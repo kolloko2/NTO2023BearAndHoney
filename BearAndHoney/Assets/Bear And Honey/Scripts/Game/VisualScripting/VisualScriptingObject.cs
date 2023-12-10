@@ -178,12 +178,7 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
                         {
 
                             int index = _currentStatementGameobjectList[_functionInHands.GetComponent<FunctionMarker>().CurrentStatement].IndexOf(_functionInHands);
-                            print(_functionInHands.GetComponent<FunctionMarker>().CurrentStatement);
-                            print(index);
-                            foreach (var VARIABLE in _currentStatementGameobjectList[index])
-                            {
-                                print(VARIABLE);
-                            }
+                           
                         _currentStatementGameobjectList[_functionInHands.GetComponent<FunctionMarker>().CurrentStatement].RemoveAt(index);
                         _currentStatementFunctionList[_functionInHands.GetComponent<FunctionMarker>().CurrentStatement].RemoveAt(index);
 
@@ -208,12 +203,7 @@ namespace Bear_And_Honey.Scripts.Game.VisualScripting.ObjectList
                 
             }
 
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
-                Debug.Log(_statementsGameObject.Count);
-            //   _statementsGameObject[_statementsGameObject.Count-1].tra.SetParent( _visualScriptingWindowGameObject.GetComponentInChildren<StatementListMarker>().transform);
-               
-            }
+      
     }
 
 
