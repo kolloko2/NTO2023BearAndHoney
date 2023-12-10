@@ -46,6 +46,10 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
         {
             Game.GameInst.ServiceLocatorInst.ActionServiceInst.BearDeathAction += BearDeath;
         }
+        private void OnDisable()
+        {
+            Game.GameInst.ServiceLocatorInst.ActionServiceInst.BearDeathAction -= BearDeath;
+        }
 
         private void Update()
         {
@@ -200,10 +204,13 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
         }
 
 
-        private void BearDeath(GameObject objectSender)
+        private void BearDeath( )
         {
-
-            Time.timeScale = 0;
+Destroy(gameObject);
+if (_bee != null)
+{
+    Destroy(_bee);
+}
             Instantiate(_bearDeathScreen, GameObject.FindWithTag(Constants.MAINLEVELCANVASTAG).transform);
         }
         
