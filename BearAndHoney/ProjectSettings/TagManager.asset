@@ -10,6 +10,7 @@ TagManager:
   - MainLevelCanvas
   - ShootPoint
   - Item
+  - RoboBee
   layers:
   - Default
   - TransparentFX

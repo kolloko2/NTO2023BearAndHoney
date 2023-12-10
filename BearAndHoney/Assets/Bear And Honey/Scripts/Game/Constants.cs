@@ -20,6 +20,9 @@ namespace Bear_And_Honey.Scripts.Game
        {
            {FunctionListEnum.MoveLeft, "Подвинуться налево"},
            { FunctionListEnum.MoveRight, "Подвинуться направо"},
+           { FunctionListEnum.DestroyShips, "Уничтожить шипы" },
+           { FunctionListEnum.OpenFirstDoor, "Открыть первую дверь"},
+           { FunctionListEnum.CloseFirstDoor, "Закрыть первую дверь"}
            
            
        };

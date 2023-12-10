@@ -74,7 +74,7 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
                 _playerSpeed = _playerSpeedBase;
             }
 
-            if (Input.GetKeyDown(KeyCode.O)  & _playerRigidbody2D.velocity.x==0 & _playerRigidbody2D.velocity.y==0 & !_inPhone & ! _isEating)
+            if (Input.GetKeyDown(KeyCode.O)  & _playerRigidbody2D.velocity.x<=0.1f & _playerRigidbody2D.velocity.y<=0.1f & !_inPhone & ! _isEating)
             {
                 _bearAnimator.SetTrigger("Eating");
                 _currentEatPause = 0;
@@ -82,7 +82,7 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
         }
         private void BeeCheck()
         {
-            if (Input.GetKeyDown(KeyCode.Q) & _playerRigidbody2D.velocity.x==0 & _playerRigidbody2D.velocity.y==0 & !_inPhone & ! _isEating)
+            if (Input.GetKeyDown(KeyCode.Q) & _playerRigidbody2D.velocity.x<=0.1f & _playerRigidbody2D.velocity.y<=0.1f & !_inPhone & ! _isEating)
             {
                 _inPhone = true;
                  _bee = Instantiate(_beePrefab, gameObject.transform.position, gameObject.transform.rotation);
