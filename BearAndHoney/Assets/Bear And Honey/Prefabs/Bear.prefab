@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 4375194544777881726}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.65, y: 1.64, z: 0}
+  m_LocalPosition: {x: -6.25, y: 1.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -107,7 +107,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   _playerSpeed: 8
-  _jumpForce: 8
+  _playerSpeedBase: 5
+  _jumpForce: 7
   _timeFromGroundToAir: 0.25
   _timeFromAirToGround: 0.2
   _isOnGround: 0
@@ -120,7 +121,12 @@ MonoBehaviour:
   _inPhone: 0
   _beePrefab: {fileID: 3348796229320157043, guid: 2edaaddbc8da4ee4c9dd68c848c9b545,
     type: 3}
+  _timeForSpeedLose: 25
+  _isEating: 0
   _beeCircle: {fileID: 4821456583580358209}
+  _currentEatPause: 0
+  _bearDeathScreen: {fileID: 5686722914353226672, guid: c09ed2c626186b042be9596693ce37d1,
+    type: 3}
 --- !u!50 &1975892024398346767
 Rigidbody2D:
   serializedVersion: 4
@@ -134,7 +140,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 10
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 2
   m_Material: {fileID: 6200000, guid: 93107b0f26e10be4cb9309e3cce7bcb5, type: 2}
@@ -168,7 +174,7 @@ MonoBehaviour:
   m_Intensity: 1.39
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 000000000deb686b
+  m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -187,7 +193,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 5
+  m_PointLightOuterRadius: 3
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -329,7 +335,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
     type: 3}
-  m_Color: {r: 0, g: 0.9706273, b: 1, a: 0.12941177}
+  m_Color: {r: 0.44705883, g: 0.2509804, b: 0.7921569, a: 0.21960784}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

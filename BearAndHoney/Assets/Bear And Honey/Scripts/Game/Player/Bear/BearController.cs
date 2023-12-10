@@ -33,6 +33,7 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
         private Animator _bearAnimator;
         private GameObject _bee;
         [SerializeField]  private float _currentEatPause;
+        [SerializeField] private GameObject _bearDeathScreen;
 
         private void Start()
         {
@@ -201,8 +202,9 @@ namespace Bear_And_Honey.Scripts.Game.Player.Bear
 
         private void BearDeath(GameObject objectSender)
         {
-            
-            print("ой");
+
+            Time.timeScale = 0;
+            Instantiate(_bearDeathScreen, GameObject.FindWithTag(Constants.MAINLEVELCANVASTAG).transform);
         }
         
         private void IsOnGround()
